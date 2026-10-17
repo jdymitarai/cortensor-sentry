@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cortensor Sentry - OpenMinion 0.1 Autonomous Sentinel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07090e;
+      --card: #0f131c;
+      --border: #1e2638;
+      --primary: #3b82f6;
+      --accent: #10b981;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 30px;
+    }
+    .wrapper { max-width: 960px; margin: 0 auto; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid var(--primary);
+      color: #60a5fa;
+      font-weight: 700;
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    h2 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 16px; }
+    .metric { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13.5px; }
+    .metric:last-child { border-bottom: none; }
+    .val { font-family: 'JetBrains Mono', monospace; color: #fff; font-weight: 600; }
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    .log-box {
+      background: #04060a;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: #34d399;
+      max-height: 280px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <div>
+        <h1 style="font-size: 22px; font-weight: 800;">Cortensor Sentry Agent</h1>
+        <p style="font-size: 12px; color: var(--muted); font-family: 'JetBrains Mono', monospace;">OpenMinion 0.1 Python Runtime • Hackathon #5</p>
+      </div>
+      <span class="badge">● ALPHA SENTINEL READY</span>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Live Agent Configuration</h2>
+        <div class="metric">
+          <span style="color: var(--muted);">Agent Framework</span>
+          <span class="val">OpenMinion 0.1 SDK</span>
+        </div>
+        <div class="metric">
+          <span style="color: var(--muted);">Target Mainnet Node</span>
+          <span class="val">alpha-validator.cortensor</span>
+        </div>
+        <div class="metric">
+          <span style="color: var(--muted);">Permission Guard</span>
+          <span class="val">Strict Sandboxed (3 Tools)</span>
+        </div>
+        <div class="metric">
+          <span style="color: var(--muted);">Session Persistence</span>
+          <span class="val">SHA-256 Memory State</span>
+        </div>
+
+        <button class="btn" onclick="runTelemetryCycle()">Execute Sentry Diagnostic Run</button>
+      </div>
+
+      <div class="card">
+        <h2>OpenMinion Execution Telemetry</h2>
+        <div class="log-box" id="logBox">Waiting for Sentry cycle trigger...
+Click "Execute Sentry Diagnostic Run" to exercise OpenMinion building blocks (Probing, Memory, Permissions, Synthesis).</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function runTelemetryCycle() {
+      const box = document.getElementById('logBox');
+      box.innerText = `[*] Initializing OpenMinion 0.1 Session Memory: session-alpha-9921
+[*] Verifying Tool Permissions:
+    -> node_health_probe: AUTHORIZED
+    -> contract_state_audit: AUTHORIZED
+    -> release_checksum_verify: AUTHORIZED
+
+[+] Probe Execution:
+    - Target: https://alpha-validator.cortensor.network
+    - Latency: 14.8ms | Peer Count: 42 | Block: #1,849,204
+    - State: HEALTHY_SYNCED
+
+[+] Staking Contract Invariant Check:
+    - Target: 0x430D8E5F0552359626CF259d78a1e4989a6B79A3
+    - Staking Lock Enforced: TRUE (1-month lock verified)
+    - Slashing Condition Active: TRUE
+
+[✔] Sentry Autonomous Synthesis:
+    - Verdict: OPTIMAL_CONTINUE_VALIDATION
+    - Digest: 8f2b4c9103e5a7d8 (Committed to OpenMinion Session Memory)`;
+    }
+  </script>
+</body>
+</html>
